@@ -10,12 +10,14 @@ import org.springframework.stereotype.Service;
 public class StartupUtil {
     @Autowired
     private StartupConfig startupConfig;
+
     public void startupServiceAuthentication() {
         //TODO: Update StartupConfig.KEY on startup
     }
+
     public void printStartupConfigs() {
-        log.info("Key: "+ startupConfig.getKey());
-        log.info("DB location: "+startupConfig.getDbLocation());
-        log.info("Registration key: "+startupConfig.getServiceKey());
+        log.info("Key: " + startupConfig.getKey());
+        log.info("DB location: " + startupConfig.getDbLocation());
+        log.info("Registration key: " + startupConfig.getServiceKey());
     }
 }

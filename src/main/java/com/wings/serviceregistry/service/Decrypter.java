@@ -25,6 +25,6 @@ public class Decrypter {
     private IvParameterSpec ivParameterSpec;
 
     public String decrypt(String input) throws InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
-        return aesUtil.decrypt(ENCRYPTION_ALGORITHM,input,secretKey,ivParameterSpec);
+        return aesUtil.decrypt(ENCRYPTION_ALGORITHM, input, secretKey, ivParameterSpec);
     }
 }

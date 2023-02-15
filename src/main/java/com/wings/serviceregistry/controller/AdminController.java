@@ -23,30 +23,25 @@ public class AdminController {
     StartupConfig startupConfig;
     @Autowired
     RegistrationUtil registrationUtil;
-    @Autowired
-    DBReader dbReader;
 
     @RequestMapping(value = "register-service", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<RegistrationResponse> registerService(@RequestHeader String serviceName, @RequestHeader String authenticationKey, @RequestBody String request) throws FileNotFoundException, JSONException {
         JSONObject secrets = new JSONObject(request);
-        if(startupConfig.getServiceKey().equals(Base64Util.encode(authenticationKey).hashCode())) {
-            if(! registrationUtil.createServiceDirectory(serviceName)) {
-                log.info("The service "+serviceName+" already exists in the DB.");
+        if (startupConfig.getServiceKey().equals(Base64Util.encode(authenticationKey).hashCode())) {
+            if (!registrationUtil.createServiceDirectory(serviceName)) {
+                log.info("The service " + serviceName + " already exists in the DB.");
             }
-            log.info("The service "+serviceName+" is registered.");
+            log.info("The service " + serviceName + " is registered.");
             log.info("Moving ahed to write/replace secrets");
             try {
-                registrationUtil.createSecretFile(secrets,serviceName);
+                registrationUtil.createSecretFile(secrets, serviceName);
             } catch (IOException e) {
                 return ResponseEntity.badRequest().build();
             }
             log.info("Service Registration is done");
-            return ResponseEntity.ok(
-                    new RegistrationResponse(
-                            "Service registration is done successfully for given secrets"));
-        }
-        else {
+            return ResponseEntity.ok(new RegistrationResponse("Service registration is done successfully for given secrets"));
+        } else {
             return ResponseEntity.badRequest().build();
         }
     }

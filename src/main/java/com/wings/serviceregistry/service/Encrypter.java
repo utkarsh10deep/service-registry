@@ -9,7 +9,6 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
-
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -26,6 +25,6 @@ public class Encrypter {
     private IvParameterSpec ivParameterSpec;
 
     public String encrypt(String input) throws InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
-        return aesUtil.encrypt(ENCRYPTION_ALGORITHM,input,secretKey,ivParameterSpec);
+        return aesUtil.encrypt(ENCRYPTION_ALGORITHM, input, secretKey, ivParameterSpec);
     }
 }
